@@ -5,8 +5,15 @@ const { data } = require('../api/data');
 const router = express.Router();
 
 router.get('/', (req, res) => {
-    // const filteredManga = data.filter(manga => manga.name.startsWith(req.query.name));
-    res.json(data);
+    const filters = req.query;
+    const filteredManga = data.filter(manga => {
+        let isValid = true;
+        for (key in filters) {
+            isValid = isValid && manga[key].startsWith(filters[key]);
+        }
+        return isValid;
+    });
+    res.json(filteredManga);
 });
 
 router.get('/:id', (req, res) => {
