@@ -24,7 +24,7 @@ router.get('/:id', (req, res) => {
 
 let currentId = 12;
 router.post('/', (req, res) => {
-    const { id, name, imageURL, author, published, publisher, seriesName, synopsis,page ,price, genre } = req.body;
+    const { id, name, imageURL, author, published, publisher, seriesName, synopsis,page ,price } = req.body;
     const manga = {
         id,
         name,
@@ -35,8 +35,7 @@ router.post('/', (req, res) => {
         seriesName,
         synopsis,
         price,
-        page,
-        genre
+        page
     };
     data.push(manga);
     res.json(data);
@@ -44,9 +43,9 @@ router.post('/', (req, res) => {
 });
 
 router.put('/:id', (req, res) => {
-    const { name, imageURL, author, published, publisher, seriesName, synopsis,page ,price, genre } = req.body;
+    const { name, imageURL, author, published, publisher, seriesName, synopsis,page ,price } = req.body;
     const mangaId = Number.parseInt(req.params.id);
-    const manga = data.findOne((manga) => manga.id === mangaId);
+    const manga = data.find((manga) => manga.id === mangaId);
 
     manga.name = name;
     manga.imageURL = imageURL;
@@ -57,7 +56,6 @@ router.put('/:id', (req, res) => {
     manga.synopsis = synopsis;
     manga.page = page;
     manga.price = price;
-    manga.genre = genre;
 
     res.json(manga);
 })
