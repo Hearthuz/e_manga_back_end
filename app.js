@@ -2,6 +2,8 @@ const express = require('express');
 const morgan = require('morgan');
 
 const mangaRoutes = require('./routes/manga');
+const usersRoutes = require('./routes/users');
+const cors = require('cors');
 
 const app = express();
 
@@ -9,14 +11,14 @@ const app = express();
 app.use(morgan('tiny'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(function (req, res, next) {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "X-Requested-With");
-    next();
-});
+const corsOptions = {
+    origin: 'https://localhost:3000',
+    optionsSuccessStatus: 200
+}
 
 // Setting up routes
-app.use('/manga', mangaRoutes);
+app.use('/manga', cors(corsOptions), mangaRoutes);
+app.use('/users', cors(corsOptions), usersRoutes);
 
 // Creating a server
 app.listen(8080, () => {

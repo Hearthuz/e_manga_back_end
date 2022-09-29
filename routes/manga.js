@@ -1,6 +1,6 @@
 const express = require('express');
 
-const { data } = require('../api/data');
+const data = require('../api/data');
 
 const router = express.Router();
 
@@ -22,10 +22,11 @@ router.get('/:id', (req, res) => {
     res.json(manga);
 });
 
+
 router.post('/', (req, res) => {
-    const { name, imageURL, author, published, publisher, seriesName, synopsis, price, genre } = req.body;
+    const { id, name, imageURL, author, published, publisher, seriesName, synopsis, price, genre } = req.body;
     const manga = {
-        id: 2,
+        id,
         name,
         imageURL,
         author,
