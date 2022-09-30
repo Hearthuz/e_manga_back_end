@@ -15,10 +15,10 @@ const corsOptions = {
     origin: 'https://localhost:3000',
     optionsSuccessStatus: 200
 }
-
+app.use(cors());
 // Setting up routes
-app.use('/manga', cors(corsOptions), mangaRoutes);
-app.use('/users', cors(corsOptions), usersRoutes);
+app.use('/manga', mangaRoutes);
+app.use('/users', usersRoutes);
 
 // Creating a server
 app.listen(8080, () => {

@@ -16,7 +16,7 @@ router.get('/:id', (req, res) => {
 
 let currentId = 2;
 router.post('/', (req, res) => {
-    const { username, password, fname, lname, email, permissionLevel, series, buyedBooks, favouriteBooks } = req.body;
+    const { username, password, fname, lname, email, permissionLevel, series, buyedBooks, favoriteBooks, cart } = req.body;
     const user = {
         id: ++currentId,
         username,
@@ -27,7 +27,8 @@ router.post('/', (req, res) => {
         permissionLevel,
         series,
         buyedBooks,
-        favouriteBooks,
+        favoriteBooks,
+        cart
     };
     users.push(user);
     res.json(users);
@@ -118,6 +119,19 @@ router.delete('/:id/cart/:manga', (req, res) => {
     const mangaId = Number.parseInt(req.params.manga);
     const mangaIndex = cartData.findIndex((cart) => cart.id === mangaId);
     users[userIndex].cart.splice(mangaIndex, 1);
+    res.sendStatus(204);
+});
+
+router.delete('/:id/favorite/:manga', (req, res) => {
+    const userId = Number.parseInt(req.params.id);
+    const userData = users.find((user) => user.id === userId);
+    const userIndex = users.findIndex((user) => user.id === userId);
+
+    const favData = userData.favoriteBooks;
+
+    const mangaId = Number.parseInt(req.params.manga);
+    const mangaIndex = favData.findIndex((fav) => fav.id === mangaId);
+    users[userIndex].favoriteBooks.splice(mangaIndex, 1);
     res.sendStatus(204);
 });
 
