@@ -36,5 +36,18 @@
         "buyedBooks": [],
         "favoriteBooks": [],
         "cart": []
+    },
+    {
+        "id": 4,
+        "username": "Minhuhi",
+        "password": "29436",
+        "fname": "Min",
+        "lname": "Huhi",
+        "email": "Huhi@gmail.com",
+        "permissionLevel": 2,
+        "series": [],
+        "buyedBooks": [],
+        "favoriteBooks": [],
+        "cart": []
     }
 ]

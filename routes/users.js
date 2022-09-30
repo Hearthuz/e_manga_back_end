@@ -122,6 +122,17 @@ router.delete('/:id/cart/:manga', (req, res) => {
     res.sendStatus(204);
 });
 
+router.delete('/:id/cart/', (req, res) => {
+    const userId = Number.parseInt(req.params.id);
+    const userData = users.find((user) => user.id === userId);
+    const userIndex = users.findIndex((user) => user.id === userId);
+
+    const cartData = userData.cart;
+
+    users[userIndex].cart.splice(cartData);
+    res.sendStatus(204);
+});
+
 router.delete('/:id/favorite/:manga', (req, res) => {
     const userId = Number.parseInt(req.params.id);
     const userData = users.find((user) => user.id === userId);

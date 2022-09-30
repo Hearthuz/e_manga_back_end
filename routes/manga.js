@@ -13,7 +13,6 @@ router.get('/', (req, res) => {
         }
         return isValid;
     });
-    console.log(filters);
     res.json(filteredManga);
 });
 
