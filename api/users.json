@@ -23,5 +23,18 @@
         "buyedBooks": [],
         "favoriteBooks": [],
         "cart": []
+    },
+    {
+        "id": 3,
+        "username": "hertz",
+        "password": "12345",
+        "fname": "hertz",
+        "lname": "koko",
+        "email": "hertz@gmail.com",
+        "permissionLevel": 1,
+        "series": [],
+        "buyedBooks": [],
+        "favoriteBooks": [],
+        "cart": []
     }
 ]

@@ -14,7 +14,7 @@ router.get('/:id', (req, res) => {
     res.json(user);
 });
 
-let currentId = 2;
+let currentId = 3;
 router.post('/', (req, res) => {
     const { username, password, fname, lname, email, permissionLevel, series, buyedBooks, favoriteBooks, cart } = req.body;
     const user = {
