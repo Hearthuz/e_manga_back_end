@@ -21,10 +21,7 @@
         "permissionLevel": 1,
         "series": [],
         "buyedBooks": [],
-        "favoriteBooks": [
-            {
-                "bookId": 0
-            }
-        ]
+        "favoriteBooks": [],
+        "cart": []
     }
 ]

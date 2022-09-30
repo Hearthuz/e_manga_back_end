@@ -8,9 +8,9 @@ const cors = require('cors');
 const app = express();
 
 // // Setting up middleware
-app.use(morgan('tiny'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+app.use(morgan('tiny'));
 const corsOptions = {
     origin: 'https://localhost:3000',
     optionsSuccessStatus: 200

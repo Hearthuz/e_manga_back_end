@@ -13,6 +13,7 @@ router.get('/', (req, res) => {
         }
         return isValid;
     });
+    console.log(filters);
     res.json(filteredManga);
 });
 
@@ -22,11 +23,11 @@ router.get('/:id', (req, res) => {
     res.json(manga);
 });
 
-
+let currentId = 12;
 router.post('/', (req, res) => {
-    const { id, name, imageURL, author, published, publisher, seriesName, synopsis, price, genre } = req.body;
+    const { page, name, imageURL, author, published, publisher, seriesName, synopsis, price, genre } = req.body;
     const manga = {
-        id,
+        id: ++currentId,
         name,
         imageURL,
         author,
@@ -35,6 +36,7 @@ router.post('/', (req, res) => {
         seriesName,
         synopsis,
         price,
+        page,
         genre
     };
     data.push(manga);
@@ -62,7 +64,7 @@ router.put('/:id', (req, res) => {
 
 router.delete('/:id', (req, res) => {
     const mangaId = Number.parseInt(req.params.id);
-    const mangaIndex = data.find((manga) => manga.id === mangaId);
+    const mangaIndex = data.findIndex(manga => manga.id === mangaId);
     data.splice(mangaIndex, 1);
     res.sendStatus(204);
 });

@@ -34,13 +34,51 @@ router.post('/', (req, res) => {
     res.sendStatus(201);
 });
 
-router.post('/:id', (req, res) => {
+router.post('/:id/favorite', (req, res) => {
     const userId = Number.parseInt(req.params.id);
     const user = users.find((user) => user.id === userId);
+    const { id, name, price, imageURL } = req.body;
 
-    const data = req.body;;
+    const data = {
+        id: id,
+        name: name,
+        price: price,
+        imageURL: imageURL
+    }
 
     user.favoriteBooks.push(data);
+    res.json(users);
+});
+
+router.post('/:id/cart', (req, res) => {
+    const userId = Number.parseInt(req.params.id);
+    const user = users.find((user) => user.id === userId);
+    const { id, name, price, imageURL } = req.body;
+
+    const data = {
+        id: id,
+        name: name,
+        price: price,
+        imageURL: imageURL
+    }
+
+    user.cart.push(data);
+    res.json(users);
+});
+
+router.post('/:id/buyed', (req, res) => {
+    const userId = Number.parseInt(req.params.id);
+    const user = users.find((user) => user.id === userId);
+    const { id, name, price, imageURL } = req.body;
+
+    const data = {
+        id: id,
+        name: name,
+        price: price,
+        imageURL: imageURL
+    }
+
+    user.buyedBooks.push(data);
     res.json(users);
 });
 
@@ -64,8 +102,22 @@ router.put('/:id', (req, res) => {
 
 router.delete('/:id', (req, res) => {
     const userId = Number.parseInt(req.params.id);
-    const userIndex = users.find((user) => user.id === userId);
+    const userIndex = users.findIndex((user) => user.id === userId);
+    console.log(userIndex);
     users.splice(userIndex, 1);
+    res.sendStatus(204);
+});
+
+router.delete('/:id/cart/:manga', (req, res) => {
+    const userId = Number.parseInt(req.params.id);
+    const userData = users.find((user) => user.id === userId);
+    const userIndex = users.findIndex((user) => user.id === userId);
+
+    const cartData = userData.cart;
+
+    const mangaId = Number.parseInt(req.params.manga);
+    const mangaIndex = cartData.findIndex((cart) => cart.id === mangaId);
+    users[userIndex].cart.splice(mangaIndex, 1);
     res.sendStatus(204);
 });
 
